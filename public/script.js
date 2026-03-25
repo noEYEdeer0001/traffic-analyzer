@@ -1,5 +1,5 @@
 // Dashboard logic with error handling and loading states
-const API_BASE = 'http://localhost:3000';
+const API_BASE = 'https://traffic-analyzer-9xqm.onrender.com';
 
 let trafficChart = null;
 
