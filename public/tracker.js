@@ -30,7 +30,7 @@
         userAgent: navigator.userAgent.slice(0, 200)
       };
 
-      await fetch('http://localhost:3000/track', {
+      await fetch('https://traffic-analyzer-9xqm.onrender.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
