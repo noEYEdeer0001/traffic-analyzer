@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traffic Analyzer - Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="hidden">
+    <i class="fas fa-spinner fa-spin"></i> Loading analytics...
+  </div>
+
+  <!-- Error Overlay -->
+  <div id="errorOverlay" class="hidden">
+    <i class="fas fa-exclamation-triangle"></i>
+    <h2>Failed to load data</h2>
+    <p>Please check if backend is running on localhost:3000</p>
+    <button onclick="loadStats()" class="login-btn">Retry</button>
+  </div>
+
+  <div class="dashboard">
+    <div class="header">
+      <h1><i class="fas fa-chart-line"></i> Analytics Dashboard</h1>
+      <button id="themeToggle" class="theme-toggle" title="Toggle Dark Mode">
+        <i class="fas fa-moon"></i>
+        <span>Dark Mode</span>
+      </button>
+    </div>
+
+    <div class="stats-grid" id="statsGrid">
+      <!-- Stats cards populated by JS -->
+    </div>
+
+    <div class="charts-grid">
+      <div class="chart-container">
+        <h3>Traffic Overview</h3>
+        <canvas id="trafficChart"></canvas>
+      </div>
+      <div class="top-pages">
+        <h3><i class="fas fa-globe"></i> Top Pages</h3>
+        <div id="topPagesList">
+          <p style="text-align: center; color: var(--text-secondary);">Loading...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tracker -->
+  <script src="tracker.js"></script>
+  <!-- Dashboard Script -->
+  <script src="script.js"></script>
+</body>
+</html>
+
