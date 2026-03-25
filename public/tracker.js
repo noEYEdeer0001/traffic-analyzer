@@ -1,5 +1,5 @@
 // Non-blocking visitor tracker
-(function() {
+(function () {
   'use strict';
 
   async function getVisitorIP() {
@@ -23,6 +23,7 @@
   async function trackVisit() {
     try {
       const ip = await getVisitorIP();
+
       const data = {
         ip,
         pageUrl: window.location.href,
@@ -30,13 +31,16 @@
         userAgent: navigator.userAgent.slice(0, 200)
       };
 
-      await fetch('https://traffic-analyzer-9xqm.onrender.com', {
+      console.log("Sending tracking data:", data);
+
+      const res = await fetch('https://traffic-analyzer-9xqm.onrender.com/track', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       });
+
+      console.log("Track status:", res.status);
     } catch (error) {
-      // Silent fail - don't block page load
       console.log('Tracker failed:', error);
     }
   }
@@ -48,7 +52,7 @@
     trackVisit();
   }
 
-  // Re-track on page visibility change (SPA support)
+  // Re-track when tab becomes active
   document.addEventListener('visibilitychange', () => {
     if (!document.hidden) {
       setTimeout(trackVisit, 1000);
@@ -56,4 +60,3 @@
   });
 
 })();
-
